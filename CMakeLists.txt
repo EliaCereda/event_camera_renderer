@@ -17,6 +17,10 @@ cmake_minimum_required(VERSION 3.16)
 project(event_camera_renderer)
 
 add_compile_options(-Wall -Wextra -Wpedantic -Werror)
+# Demote warnings we can't fix here, from the ROS
+# framework headers, not this package: 
+# __COUNTER__ (flagged as a C2y extension) in RCLCPP_COMPONENTS_REGISTER_NODE.
+add_compile_options(-Wno-error=c2y-extensions)
 
 # find dependencies
 find_package(ament_cmake REQUIRED)
